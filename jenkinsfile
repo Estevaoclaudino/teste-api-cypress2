@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clonar repositorio') {
+            steps {
+                git 'https://github.com/Estevaoclaudino/teste-api-cypress2.git'
+            }
+        }
+        stage('Instalar dependencias') {
+            steps {
+                bat 'npm install'
+            }
+        }
+        stage('Executar testes') {
+            steps {
+                bat '''set NO_COLOR=1
+npx cypress run'''
+            }
+        }
+    }
+}
